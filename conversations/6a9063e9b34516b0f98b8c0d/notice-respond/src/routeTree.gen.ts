@@ -32,6 +32,7 @@ import { Route as WorkflowsIndexRouteImport } from './routes/workflows/index'
 import { Route as WorkflowsAgencyActionRouteImport } from './routes/workflows/agency-action'
 import { Route as WorkflowsAnalyzeRouteImport } from './routes/workflows/analyze'
 import { Route as WorkflowsBenefitsNoticeRouteImport } from './routes/workflows/benefits-notice'
+import { Route as WorkflowsClaimProofPackageRouteImport } from './routes/workflows/claim-proof-package'
 import { Route as WorkflowsCodeEnforcementRouteImport } from './routes/workflows/code-enforcement'
 import { Route as WorkflowsCourtSummonsRouteImport } from './routes/workflows/court-summons'
 import { Route as WorkflowsCp14ResponseRouteImport } from './routes/workflows/cp14-response'
@@ -44,6 +45,7 @@ import { Route as WorkflowsExperianDisputeRouteImport } from './routes/workflows
 import { Route as WorkflowsFileAppealRouteImport } from './routes/workflows/file-appeal'
 import { Route as WorkflowsIrsNoticeRouteImport } from './routes/workflows/irs-notice'
 import { Route as WorkflowsPermitCorrectionRouteImport } from './routes/workflows/permit-correction'
+import { Route as WorkflowsPermitDenialResponseRouteImport } from './routes/workflows/permit-denial-response'
 import { Route as WorkflowsRespondToABenefitsNoticeRouteImport } from './routes/workflows/respond-to-a-benefits-notice'
 import { Route as WorkflowsRespondToACourtSummonsRouteImport } from './routes/workflows/respond-to-a-court-summons'
 import { Route as WorkflowsRespondToADmvNoticeRouteImport } from './routes/workflows/respond-to-a-dmv-notice'
@@ -58,6 +60,8 @@ import { Route as WorkflowsRespondToCp14NoticeRouteImport } from './routes/workf
 import { Route as WorkflowsRespondToCp2000NoticeRouteImport } from './routes/workflows/respond-to-cp2000-notice'
 import { Route as WorkflowsSsaNoticeRouteImport } from './routes/workflows/ssa-notice'
 import { Route as WorkflowsTaxNoticeRouteImport } from './routes/workflows/tax-notice'
+import { Route as WorkflowsTenantEvictionResponseRouteImport } from './routes/workflows/tenant-eviction-response'
+import { Route as WorkflowsTenantRepairDemandRouteImport } from './routes/workflows/tenant-repair-demand'
 import { Route as WorkflowsTransunionDisputeRouteImport } from './routes/workflows/transunion-dispute'
 import { Route as WorkflowsUscisNoticeRouteImport } from './routes/workflows/uscis-notice'
 import { Route as ApiAdminHealthRouteImport } from './routes/api/admin/health'
@@ -182,6 +186,12 @@ const WorkflowsBenefitsNoticeRoute = WorkflowsBenefitsNoticeRouteImport.update({
   path: '/workflows/benefits-notice',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WorkflowsClaimProofPackageRoute =
+  WorkflowsClaimProofPackageRouteImport.update({
+    id: '/workflows/claim-proof-package',
+    path: '/workflows/claim-proof-package',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const WorkflowsCodeEnforcementRoute =
   WorkflowsCodeEnforcementRouteImport.update({
     id: '/workflows/code-enforcement',
@@ -243,6 +253,12 @@ const WorkflowsPermitCorrectionRoute =
   WorkflowsPermitCorrectionRouteImport.update({
     id: '/workflows/permit-correction',
     path: '/workflows/permit-correction',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const WorkflowsPermitDenialResponseRoute =
+  WorkflowsPermitDenialResponseRouteImport.update({
+    id: '/workflows/permit-denial-response',
+    path: '/workflows/permit-denial-response',
     getParentRoute: () => rootRouteImport,
   } as any)
 const WorkflowsRespondToABenefitsNoticeRoute =
@@ -327,6 +343,18 @@ const WorkflowsTaxNoticeRoute = WorkflowsTaxNoticeRouteImport.update({
   path: '/workflows/tax-notice',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WorkflowsTenantEvictionResponseRoute =
+  WorkflowsTenantEvictionResponseRouteImport.update({
+    id: '/workflows/tenant-eviction-response',
+    path: '/workflows/tenant-eviction-response',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const WorkflowsTenantRepairDemandRoute =
+  WorkflowsTenantRepairDemandRouteImport.update({
+    id: '/workflows/tenant-repair-demand',
+    path: '/workflows/tenant-repair-demand',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const WorkflowsTransunionDisputeRoute =
   WorkflowsTransunionDisputeRouteImport.update({
     id: '/workflows/transunion-dispute',
@@ -386,6 +414,7 @@ export interface FileRoutesByFullPath {
   '/workflows/agency-action': typeof WorkflowsAgencyActionRoute
   '/workflows/analyze': typeof WorkflowsAnalyzeRoute
   '/workflows/benefits-notice': typeof WorkflowsBenefitsNoticeRoute
+  '/workflows/claim-proof-package': typeof WorkflowsClaimProofPackageRoute
   '/workflows/code-enforcement': typeof WorkflowsCodeEnforcementRoute
   '/workflows/court-summons': typeof WorkflowsCourtSummonsRoute
   '/workflows/cp14-response': typeof WorkflowsCp14ResponseRoute
@@ -398,6 +427,7 @@ export interface FileRoutesByFullPath {
   '/workflows/file-appeal': typeof WorkflowsFileAppealRoute
   '/workflows/irs-notice': typeof WorkflowsIrsNoticeRoute
   '/workflows/permit-correction': typeof WorkflowsPermitCorrectionRoute
+  '/workflows/permit-denial-response': typeof WorkflowsPermitDenialResponseRoute
   '/workflows/respond-to-a-benefits-notice': typeof WorkflowsRespondToABenefitsNoticeRoute
   '/workflows/respond-to-a-court-summons': typeof WorkflowsRespondToACourtSummonsRoute
   '/workflows/respond-to-a-dmv-notice': typeof WorkflowsRespondToADmvNoticeRoute
@@ -412,6 +442,8 @@ export interface FileRoutesByFullPath {
   '/workflows/respond-to-cp2000-notice': typeof WorkflowsRespondToCp2000NoticeRoute
   '/workflows/ssa-notice': typeof WorkflowsSsaNoticeRoute
   '/workflows/tax-notice': typeof WorkflowsTaxNoticeRoute
+  '/workflows/tenant-eviction-response': typeof WorkflowsTenantEvictionResponseRoute
+  '/workflows/tenant-repair-demand': typeof WorkflowsTenantRepairDemandRoute
   '/workflows/transunion-dispute': typeof WorkflowsTransunionDisputeRoute
   '/workflows/uscis-notice': typeof WorkflowsUscisNoticeRoute
   '/resources/': typeof ResourcesIndexRoute
@@ -444,6 +476,7 @@ export interface FileRoutesByTo {
   '/workflows/agency-action': typeof WorkflowsAgencyActionRoute
   '/workflows/analyze': typeof WorkflowsAnalyzeRoute
   '/workflows/benefits-notice': typeof WorkflowsBenefitsNoticeRoute
+  '/workflows/claim-proof-package': typeof WorkflowsClaimProofPackageRoute
   '/workflows/code-enforcement': typeof WorkflowsCodeEnforcementRoute
   '/workflows/court-summons': typeof WorkflowsCourtSummonsRoute
   '/workflows/cp14-response': typeof WorkflowsCp14ResponseRoute
@@ -456,6 +489,7 @@ export interface FileRoutesByTo {
   '/workflows/file-appeal': typeof WorkflowsFileAppealRoute
   '/workflows/irs-notice': typeof WorkflowsIrsNoticeRoute
   '/workflows/permit-correction': typeof WorkflowsPermitCorrectionRoute
+  '/workflows/permit-denial-response': typeof WorkflowsPermitDenialResponseRoute
   '/workflows/respond-to-a-benefits-notice': typeof WorkflowsRespondToABenefitsNoticeRoute
   '/workflows/respond-to-a-court-summons': typeof WorkflowsRespondToACourtSummonsRoute
   '/workflows/respond-to-a-dmv-notice': typeof WorkflowsRespondToADmvNoticeRoute
@@ -470,6 +504,8 @@ export interface FileRoutesByTo {
   '/workflows/respond-to-cp2000-notice': typeof WorkflowsRespondToCp2000NoticeRoute
   '/workflows/ssa-notice': typeof WorkflowsSsaNoticeRoute
   '/workflows/tax-notice': typeof WorkflowsTaxNoticeRoute
+  '/workflows/tenant-eviction-response': typeof WorkflowsTenantEvictionResponseRoute
+  '/workflows/tenant-repair-demand': typeof WorkflowsTenantRepairDemandRoute
   '/workflows/transunion-dispute': typeof WorkflowsTransunionDisputeRoute
   '/workflows/uscis-notice': typeof WorkflowsUscisNoticeRoute
   '/resources': typeof ResourcesIndexRoute
@@ -503,6 +539,7 @@ export interface FileRoutesById {
   '/workflows/agency-action': typeof WorkflowsAgencyActionRoute
   '/workflows/analyze': typeof WorkflowsAnalyzeRoute
   '/workflows/benefits-notice': typeof WorkflowsBenefitsNoticeRoute
+  '/workflows/claim-proof-package': typeof WorkflowsClaimProofPackageRoute
   '/workflows/code-enforcement': typeof WorkflowsCodeEnforcementRoute
   '/workflows/court-summons': typeof WorkflowsCourtSummonsRoute
   '/workflows/cp14-response': typeof WorkflowsCp14ResponseRoute
@@ -515,6 +552,7 @@ export interface FileRoutesById {
   '/workflows/file-appeal': typeof WorkflowsFileAppealRoute
   '/workflows/irs-notice': typeof WorkflowsIrsNoticeRoute
   '/workflows/permit-correction': typeof WorkflowsPermitCorrectionRoute
+  '/workflows/permit-denial-response': typeof WorkflowsPermitDenialResponseRoute
   '/workflows/respond-to-a-benefits-notice': typeof WorkflowsRespondToABenefitsNoticeRoute
   '/workflows/respond-to-a-court-summons': typeof WorkflowsRespondToACourtSummonsRoute
   '/workflows/respond-to-a-dmv-notice': typeof WorkflowsRespondToADmvNoticeRoute
@@ -529,6 +567,8 @@ export interface FileRoutesById {
   '/workflows/respond-to-cp2000-notice': typeof WorkflowsRespondToCp2000NoticeRoute
   '/workflows/ssa-notice': typeof WorkflowsSsaNoticeRoute
   '/workflows/tax-notice': typeof WorkflowsTaxNoticeRoute
+  '/workflows/tenant-eviction-response': typeof WorkflowsTenantEvictionResponseRoute
+  '/workflows/tenant-repair-demand': typeof WorkflowsTenantRepairDemandRoute
   '/workflows/transunion-dispute': typeof WorkflowsTransunionDisputeRoute
   '/workflows/uscis-notice': typeof WorkflowsUscisNoticeRoute
   '/resources/': typeof ResourcesIndexRoute
@@ -563,6 +603,7 @@ export interface FileRouteTypes {
     | '/workflows/agency-action'
     | '/workflows/analyze'
     | '/workflows/benefits-notice'
+    | '/workflows/claim-proof-package'
     | '/workflows/code-enforcement'
     | '/workflows/court-summons'
     | '/workflows/cp14-response'
@@ -575,6 +616,7 @@ export interface FileRouteTypes {
     | '/workflows/file-appeal'
     | '/workflows/irs-notice'
     | '/workflows/permit-correction'
+    | '/workflows/permit-denial-response'
     | '/workflows/respond-to-a-benefits-notice'
     | '/workflows/respond-to-a-court-summons'
     | '/workflows/respond-to-a-dmv-notice'
@@ -589,6 +631,8 @@ export interface FileRouteTypes {
     | '/workflows/respond-to-cp2000-notice'
     | '/workflows/ssa-notice'
     | '/workflows/tax-notice'
+    | '/workflows/tenant-eviction-response'
+    | '/workflows/tenant-repair-demand'
     | '/workflows/transunion-dispute'
     | '/workflows/uscis-notice'
     | '/resources/'
@@ -621,6 +665,7 @@ export interface FileRouteTypes {
     | '/workflows/agency-action'
     | '/workflows/analyze'
     | '/workflows/benefits-notice'
+    | '/workflows/claim-proof-package'
     | '/workflows/code-enforcement'
     | '/workflows/court-summons'
     | '/workflows/cp14-response'
@@ -633,6 +678,7 @@ export interface FileRouteTypes {
     | '/workflows/file-appeal'
     | '/workflows/irs-notice'
     | '/workflows/permit-correction'
+    | '/workflows/permit-denial-response'
     | '/workflows/respond-to-a-benefits-notice'
     | '/workflows/respond-to-a-court-summons'
     | '/workflows/respond-to-a-dmv-notice'
@@ -647,6 +693,8 @@ export interface FileRouteTypes {
     | '/workflows/respond-to-cp2000-notice'
     | '/workflows/ssa-notice'
     | '/workflows/tax-notice'
+    | '/workflows/tenant-eviction-response'
+    | '/workflows/tenant-repair-demand'
     | '/workflows/transunion-dispute'
     | '/workflows/uscis-notice'
     | '/resources'
@@ -679,6 +727,7 @@ export interface FileRouteTypes {
     | '/workflows/agency-action'
     | '/workflows/analyze'
     | '/workflows/benefits-notice'
+    | '/workflows/claim-proof-package'
     | '/workflows/code-enforcement'
     | '/workflows/court-summons'
     | '/workflows/cp14-response'
@@ -691,6 +740,7 @@ export interface FileRouteTypes {
     | '/workflows/file-appeal'
     | '/workflows/irs-notice'
     | '/workflows/permit-correction'
+    | '/workflows/permit-denial-response'
     | '/workflows/respond-to-a-benefits-notice'
     | '/workflows/respond-to-a-court-summons'
     | '/workflows/respond-to-a-dmv-notice'
@@ -705,6 +755,8 @@ export interface FileRouteTypes {
     | '/workflows/respond-to-cp2000-notice'
     | '/workflows/ssa-notice'
     | '/workflows/tax-notice'
+    | '/workflows/tenant-eviction-response'
+    | '/workflows/tenant-repair-demand'
     | '/workflows/transunion-dispute'
     | '/workflows/uscis-notice'
     | '/resources/'
@@ -738,6 +790,7 @@ export interface RootRouteChildren {
   WorkflowsAgencyActionRoute: typeof WorkflowsAgencyActionRoute
   WorkflowsAnalyzeRoute: typeof WorkflowsAnalyzeRoute
   WorkflowsBenefitsNoticeRoute: typeof WorkflowsBenefitsNoticeRoute
+  WorkflowsClaimProofPackageRoute: typeof WorkflowsClaimProofPackageRoute
   WorkflowsCodeEnforcementRoute: typeof WorkflowsCodeEnforcementRoute
   WorkflowsCourtSummonsRoute: typeof WorkflowsCourtSummonsRoute
   WorkflowsCp14ResponseRoute: typeof WorkflowsCp14ResponseRoute
@@ -750,6 +803,7 @@ export interface RootRouteChildren {
   WorkflowsFileAppealRoute: typeof WorkflowsFileAppealRoute
   WorkflowsIrsNoticeRoute: typeof WorkflowsIrsNoticeRoute
   WorkflowsPermitCorrectionRoute: typeof WorkflowsPermitCorrectionRoute
+  WorkflowsPermitDenialResponseRoute: typeof WorkflowsPermitDenialResponseRoute
   WorkflowsRespondToABenefitsNoticeRoute: typeof WorkflowsRespondToABenefitsNoticeRoute
   WorkflowsRespondToACourtSummonsRoute: typeof WorkflowsRespondToACourtSummonsRoute
   WorkflowsRespondToADmvNoticeRoute: typeof WorkflowsRespondToADmvNoticeRoute
@@ -764,6 +818,8 @@ export interface RootRouteChildren {
   WorkflowsRespondToCp2000NoticeRoute: typeof WorkflowsRespondToCp2000NoticeRoute
   WorkflowsSsaNoticeRoute: typeof WorkflowsSsaNoticeRoute
   WorkflowsTaxNoticeRoute: typeof WorkflowsTaxNoticeRoute
+  WorkflowsTenantEvictionResponseRoute: typeof WorkflowsTenantEvictionResponseRoute
+  WorkflowsTenantRepairDemandRoute: typeof WorkflowsTenantRepairDemandRoute
   WorkflowsTransunionDisputeRoute: typeof WorkflowsTransunionDisputeRoute
   WorkflowsUscisNoticeRoute: typeof WorkflowsUscisNoticeRoute
   ResourcesIndexRoute: typeof ResourcesIndexRoute
@@ -938,6 +994,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WorkflowsBenefitsNoticeRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/workflows/claim-proof-package': {
+      id: '/workflows/claim-proof-package'
+      path: '/workflows/claim-proof-package'
+      fullPath: '/workflows/claim-proof-package'
+      preLoaderRoute: typeof WorkflowsClaimProofPackageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/workflows/code-enforcement': {
       id: '/workflows/code-enforcement'
       path: '/workflows/code-enforcement'
@@ -1020,6 +1083,13 @@ declare module '@tanstack/react-router' {
       path: '/workflows/permit-correction'
       fullPath: '/workflows/permit-correction'
       preLoaderRoute: typeof WorkflowsPermitCorrectionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/workflows/permit-denial-response': {
+      id: '/workflows/permit-denial-response'
+      path: '/workflows/permit-denial-response'
+      fullPath: '/workflows/permit-denial-response'
+      preLoaderRoute: typeof WorkflowsPermitDenialResponseRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/workflows/respond-to-a-benefits-notice': {
@@ -1120,6 +1190,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WorkflowsTaxNoticeRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/workflows/tenant-eviction-response': {
+      id: '/workflows/tenant-eviction-response'
+      path: '/workflows/tenant-eviction-response'
+      fullPath: '/workflows/tenant-eviction-response'
+      preLoaderRoute: typeof WorkflowsTenantEvictionResponseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/workflows/tenant-repair-demand': {
+      id: '/workflows/tenant-repair-demand'
+      path: '/workflows/tenant-repair-demand'
+      fullPath: '/workflows/tenant-repair-demand'
+      preLoaderRoute: typeof WorkflowsTenantRepairDemandRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/workflows/transunion-dispute': {
       id: '/workflows/transunion-dispute'
       path: '/workflows/transunion-dispute'
@@ -1194,6 +1278,7 @@ const rootRouteChildren: RootRouteChildren = {
   WorkflowsAgencyActionRoute: WorkflowsAgencyActionRoute,
   WorkflowsAnalyzeRoute: WorkflowsAnalyzeRoute,
   WorkflowsBenefitsNoticeRoute: WorkflowsBenefitsNoticeRoute,
+  WorkflowsClaimProofPackageRoute: WorkflowsClaimProofPackageRoute,
   WorkflowsCodeEnforcementRoute: WorkflowsCodeEnforcementRoute,
   WorkflowsCourtSummonsRoute: WorkflowsCourtSummonsRoute,
   WorkflowsCp14ResponseRoute: WorkflowsCp14ResponseRoute,
@@ -1206,6 +1291,7 @@ const rootRouteChildren: RootRouteChildren = {
   WorkflowsFileAppealRoute: WorkflowsFileAppealRoute,
   WorkflowsIrsNoticeRoute: WorkflowsIrsNoticeRoute,
   WorkflowsPermitCorrectionRoute: WorkflowsPermitCorrectionRoute,
+  WorkflowsPermitDenialResponseRoute: WorkflowsPermitDenialResponseRoute,
   WorkflowsRespondToABenefitsNoticeRoute:
     WorkflowsRespondToABenefitsNoticeRoute,
   WorkflowsRespondToACourtSummonsRoute: WorkflowsRespondToACourtSummonsRoute,
@@ -1223,6 +1309,8 @@ const rootRouteChildren: RootRouteChildren = {
   WorkflowsRespondToCp2000NoticeRoute: WorkflowsRespondToCp2000NoticeRoute,
   WorkflowsSsaNoticeRoute: WorkflowsSsaNoticeRoute,
   WorkflowsTaxNoticeRoute: WorkflowsTaxNoticeRoute,
+  WorkflowsTenantEvictionResponseRoute: WorkflowsTenantEvictionResponseRoute,
+  WorkflowsTenantRepairDemandRoute: WorkflowsTenantRepairDemandRoute,
   WorkflowsTransunionDisputeRoute: WorkflowsTransunionDisputeRoute,
   WorkflowsUscisNoticeRoute: WorkflowsUscisNoticeRoute,
   ResourcesIndexRoute: ResourcesIndexRoute,
