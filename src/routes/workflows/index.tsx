@@ -1,122 +1,71 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { SiteHeader } from "@/components/site-header";
+import { createFileRoute } from "@tanstack/react-router";
 import { SiteFooter } from "@/components/site-footer";
-import { NOTICE_WORKFLOWS, WorkflowCard, workflowCategories } from "@/components/notice-workflow-directory";
+import { SiteHeader } from "@/components/site-header";
 
-const SITE_ORIGIN = "https://notice-respond.pages.dev";
+const SITE_ORIGIN = "https://tenant-reply.pages.dev";
+const WORKFLOWS = [
+  ["Eviction & Possession Notices", ["Eviction notice response", "Pay-or-quit response", "Cure-or-quit response"]],
+  ["Lease & Property Issues", ["Lease violation response", "Repair request", "Habitability complaint"]],
+  ["Money & Move-Out", ["Security deposit dispute"]],
+  ["General Tenant Correspondence", ["Landlord or property-manager response"]],
+];
 
 export const Route = createFileRoute("/workflows/")({
   head: () => ({
     meta: [
-      { title: "Notice Response Workflows — IRS, Court, Agency, Credit | Notice Respond" },
-      { name: "description", content: "Browse all Notice Respond workflows for IRS notices, court summonses, agency actions, credit disputes, appeals, and other government correspondence. Find the right workflow for your notice." },
+      { title: "Tenant Reply Workflows — Tenant & Housing Correspondence" },
+      { name: "description", content: "Tenant-side workflow families for eviction-related notices, lease issues, repairs, habitability, security deposits, and landlord or property-manager correspondence." },
       { name: "robots", content: "index, follow" },
-      { property: "og:title", content: "Notice Response Workflows | Notice Respond" },
-      { property: "og:description", content: "Browse all Notice Respond workflows for government notices, agency actions, and formal responses." },
+      { property: "og:title", content: "Tenant Reply Workflows" },
+      { property: "og:description", content: "Tenant-side correspondence workflows by MailMyPDF." },
       { property: "og:type", content: "website" },
-      { property: "og:site_name", content: "Notice Respond · MailMyPDF" },
+      { property: "og:site_name", content: "Tenant Reply · MailMyPDF" },
       { property: "og:url", content: SITE_ORIGIN + "/workflows" },
-      { property: "og:image", content: "https://media.base44.com/images/public/6a8bd310dfdf9ad92cf26415/06e033fed_generated_image.png" },
-      { property: "og:image:width", content: "1200" },
-      { property: "og:image:height", content: "630" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Notice Response Workflows | Notice Respond" },
-      { name: "twitter:description", content: "Browse all Notice Respond workflows for government notices, agency actions, and formal responses." },
-      { name: "twitter:image", content: "https://media.base44.com/images/public/6a8bd310dfdf9ad92cf26415/06e033fed_generated_image.png" },
     ],
     links: [{ rel: "canonical", href: SITE_ORIGIN + "/workflows" }],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "ItemList",
-          name: "Notice Respond Workflows",
-          itemListElement: NOTICE_WORKFLOWS.map((w, i) => ({
-            "@type": "ListItem",
-            position: i + 1,
-            name: w.title,
-            url: SITE_ORIGIN + w.route,
-            description: w.description,
-          })),
-        }),
-      },
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "BreadcrumbList",
-          itemListElement: [
-            { "@type": "ListItem", position: 1, name: "Notice Respond", item: SITE_ORIGIN + "/" },
-            { "@type": "ListItem", position: 2, name: "Workflows", item: SITE_ORIGIN + "/workflows" },
-          ],
-        }),
-      },
-    ],
   }),
   component: WorkflowsDirectory,
 });
 
 function WorkflowsDirectory() {
-  const groups = workflowCategories();
-  let globalIndex = 0;
-
   return (
-    <>
+    <div className="min-h-screen bg-paper">
       <SiteHeader />
       <main>
         <section className="border-b border-rule/60 bg-paper-deep/20">
           <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-20">
-            <div className="postmark w-fit">Workflow Directory</div>
-            <h1 className="mt-5 font-serif text-4xl leading-tight sm:text-5xl">
-              Find your response workflow.
-            </h1>
+            <div className="postmark w-fit">Tenant Reply · Workflow Directory</div>
+            <h1 className="mt-5 font-serif text-4xl leading-tight sm:text-5xl">Tenant and housing correspondence workflows.</h1>
             <p className="mt-4 max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg">
-              Each workflow is built around a distinct notice type and search intent. Select the situation you are dealing with to see what information matters, what documents to bring, and how the response process works.
+              Choose the kind of landlord, property-manager, lease, repair, eviction-related, or security-deposit matter you need to organize. The shared MailMyPDF workflow engine provides the underlying document, evidence, review, and mailing primitives.
             </p>
           </div>
         </section>
-
         <section>
           <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
             <div className="space-y-12">
-              {groups.map((group) => (
-                <div key={group.category}>
+              {WORKFLOWS.map(([category, items]) => (
+                <section key={category}>
                   <div className="mb-5 flex items-center gap-3">
-                    <h2 className="font-mono text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-                      {group.category}
-                    </h2>
+                    <h2 className="font-mono text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">{category}</h2>
                     <span className="h-px flex-1 bg-rule/60" />
-                    <span className="font-mono text-xs text-muted-foreground">{group.workflows.length}</span>
+                    <span className="font-mono text-xs text-muted-foreground">{items.length}</span>
                   </div>
                   <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-                    {group.workflows.map((w) => (
-                      <WorkflowCard key={w.slug} workflow={w} index={globalIndex++} />
+                    {items.map((title) => (
+                      <article key={title} className="rounded-xl border border-rule bg-card p-6">
+                        <h3 className="font-serif text-xl leading-snug">{title}</h3>
+                        <p className="mt-3 text-sm leading-6 text-muted-foreground">Tenant-side workflow family. The detailed interactive implementation is kept separate from the shared workflow infrastructure.</p>
+                      </article>
                     ))}
                   </div>
-                </div>
+                </section>
               ))}
             </div>
           </div>
         </section>
-
-        <section className="border-t border-rule/60 bg-paper-deep/20">
-          <div className="mx-auto max-w-4xl px-4 py-12 text-center sm:px-6 sm:py-16">
-            <div className="postmark mx-auto w-fit">Not sure which one?</div>
-            <h2 className="mt-4 font-serif text-3xl sm:text-4xl">Upload the notice and let the system identify it.</h2>
-            <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-muted-foreground sm:text-base">
-              Start with analysis and the system will help identify the notice type and organize the next step.
-            </p>
-            <Link
-              to="/workflows/analyze"
-              className="mt-6 inline-flex items-center gap-2 rounded-full bg-ink px-6 py-3 text-sm font-medium text-paper shadow-card transition-transform hover:-translate-y-0.5"
-            >
-              Analyze my notice →
-            </Link>
-          </div>
-        </section>
       </main>
       <SiteFooter />
-    </>
+    </div>
   );
 }
