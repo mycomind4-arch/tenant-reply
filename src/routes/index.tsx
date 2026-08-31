@@ -1,211 +1,98 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import { NOTICE_WORKFLOWS } from "@/components/notice-workflow-directory";
-import { FeaturedWorkflowCarousel } from "@/components/featured-workflow-carousel";
 
-const SITE_ORIGIN = "https://notice-respond.pages.dev";
+const SITE_ORIGIN = "https://tenant-reply.pages.dev";
 
-const HERO_IMAGE = "https://media.base44.com/images/public/6a8bd310dfdf9ad92cf26415/06e033fed_generated_image.png";
-const WORKSPACE_IMAGE = "https://media.base44.com/images/public/6a8bd310dfdf9ad92cf26415/6263d0344_generated_image.png";
-
-/** Curated 8 featured workflows spanning all categories */
-const FEATURED_SLUGS = [
-  "irs-notice",
-  "court-summons",
-  "cp14-response",
-  "uscis-notice",
-  "code-enforcement",
-  "ssa-notice",
-  "dmv-notice",
-  "government-notice",
+const WORKFLOWS = [
+  { title: "Eviction Notice Response", detail: "Organize the notice, dates, facts, supporting records, and a written response." },
+  { title: "Pay-or-Quit / Cure-or-Quit Response", detail: "Track the stated demand, deadline, lease terms, payment records, and response path." },
+  { title: "Lease Violation Response", detail: "Document the alleged violation, relevant lease language, facts, and supporting evidence." },
+  { title: "Repair & Habitability Request", detail: "Build a dated repair record with notices, communications, photos, and requested action." },
+  { title: "Security Deposit Dispute", detail: "Organize the move-out record, deposit accounting, deductions, receipts, and correspondence." },
+  { title: "Landlord / Property Manager Correspondence", detail: "Prepare a structured response to a formal property-management communication." },
 ];
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Notice Respond — Government Notice Response Workflows" },
-      { name: "description", content: "Find the right workflow for an IRS notice, government letter, code enforcement notice, permit correction, DMV notice, SSA notice, USCIS notice, benefits notice, court summons, or agency action." },
+      { title: "Tenant Reply — Tenant-Side Property Correspondence" },
+      { name: "description", content: "Tenant-side workflows for organizing landlord and property-manager notices, lease issues, repairs, habitability matters, eviction-related responses, and security-deposit disputes." },
       { name: "robots", content: "index, follow" },
-      { property: "og:title", content: "Notice Respond — Government Notice Response Workflows" },
-      { property: "og:description", content: "A specialized MailMyPDF product for understanding, preparing, and documenting responses to official notices." },
+      { property: "og:title", content: "Tenant Reply — Tenant-Side Property Correspondence" },
+      { property: "og:description", content: "Tenant-side correspondence workflows by MailMyPDF." },
       { property: "og:type", content: "website" },
-      { property: "og:site_name", content: "Notice Respond · MailMyPDF" },
+      { property: "og:site_name", content: "Tenant Reply · MailMyPDF" },
       { property: "og:url", content: SITE_ORIGIN + "/" },
-      { property: "og:image", content: "https://media.base44.com/images/public/6a8bd310dfdf9ad92cf26415/06e033fed_generated_image.png" },
-      { property: "og:image:width", content: "1024" },
-      { property: "og:image:height", content: "1024" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Notice Respond — Government Notice Response Workflows" },
-      { name: "twitter:description", content: "Understand the notice. Prepare the response. Send it properly. Keep the proof." },
-      { name: "twitter:image", content: "https://media.base44.com/images/public/6a8bd310dfdf9ad92cf26415/06e033fed_generated_image.png" },
     ],
     links: [{ rel: "canonical", href: SITE_ORIGIN + "/" }],
-    scripts: [
-      { type: "application/ld+json", children: JSON.stringify({ "@context": "https://schema.org", "@type": "Organization", name: "Notice Respond", url: SITE_ORIGIN, brand: { "@type": "Brand", name: "MailMyPDF" }, description: "Specialized workflows for responding to official notices and government correspondence." }) },
-      { type: "application/ld+json", children: JSON.stringify({ "@context": "https://schema.org", "@type": "WebSite", name: "Notice Respond", description: "Specialized workflows for responding to official notices and government correspondence.", url: SITE_ORIGIN, publisher: { "@type": "Organization", name: "MailMyPDF", url: "https://mailmypdf.com" }, hasPart: NOTICE_WORKFLOWS.map((workflow) => ({ "@type": "WebPage", name: workflow.title, url: SITE_ORIGIN + workflow.route, about: workflow.searchIntent })) }) },
-    ],
   }),
-  component: DirectoryPage,
+  component: TenantReplyHome,
 });
 
-function DirectoryPage() {
-  const featured = FEATURED_SLUGS
-    .map((slug) => NOTICE_WORKFLOWS.find((w) => w.slug === slug))
-    .filter((w): w is NonNullable<typeof w> => w !== undefined);
-
+function TenantReplyHome() {
   return (
     <div className="min-h-screen bg-paper">
       <SiteHeader />
       <main>
-        {/* ═══ HERO ═══ */}
-        <section className="relative overflow-hidden border-b border-rule/60">
-          <div className="absolute inset-0">
-            <img
-              src={HERO_IMAGE}
-              alt="Professional correspondence desk with organized documents"
-              className="h-full w-full object-cover"
-              loading="eager"
-              aria-hidden="true"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-paper via-paper/85 to-paper/30" />
-          </div>
-          <div className="relative mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28 md:py-36">
-            <div className="max-w-2xl">
-              <div className="postmark w-fit">Notice Respond · MailMyPDF</div>
-              <h1 className="mt-6 font-serif text-4xl leading-[1.1] sm:text-5xl md:text-6xl">
-                Understand the notice.<br />
-                Build the response.<br />
-                <span className="italic text-stamp">Send it with proof.</span>
+        <section className="border-b border-rule/60">
+          <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
+            <div className="max-w-3xl">
+              <div className="postmark w-fit">Tenant Reply · MailMyPDF</div>
+              <h1 className="mt-6 font-serif text-4xl leading-[1.08] sm:text-5xl md:text-6xl">
+                Respond clearly.<br />
+                Keep the record.<br />
+                <span className="italic text-stamp">Stay organized.</span>
               </h1>
-              <p className="mt-6 max-w-xl text-base leading-7 text-ink-soft sm:text-lg">
-                Upload or provide the notice. Identify the facts, dates, and evidence that matter. Review and approve the exact response. Send through MailMyPDF with tracking and proof of delivery.
+              <p className="mt-6 max-w-2xl text-base leading-7 text-ink-soft sm:text-lg">
+                Tenant Reply is the tenant-side correspondence vertical for organizing landlord and property-manager communications, deadlines, facts, evidence, and written responses.
               </p>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <Link
-                  to="/workflows/analyze"
-                  className="inline-flex items-center gap-2 rounded-full bg-ink px-6 py-3.5 text-sm font-medium text-paper shadow-card transition-transform hover:-translate-y-0.5"
-                >
-                  Start a Response
-                  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                  </svg>
-                </Link>
-                <Link
-                  to="/workflows"
-                  className="inline-flex items-center gap-2 rounded-full border border-rule bg-card px-6 py-3.5 text-sm font-medium transition-colors hover:border-ink/30"
-                >
-                  Explore Notice Types
-                </Link>
-              </div>
             </div>
           </div>
         </section>
 
-        {/* ═══ PROCESS OVERVIEW ═══ */}
         <section className="border-b border-rule/60 bg-paper-deep/20">
           <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
-            <div className="grid gap-6 md:grid-cols-3">
-              <ProcessStep
-                number="01"
-                title="Understand"
-                text="Upload or provide the notice. The system extracts facts, dates, reference numbers, and the requested action — clearly distinguishing what came from the document, what you provided, and what needs review."
-              />
-              <ProcessStep
-                number="02"
-                title="Prepare"
-                text="Organize supporting evidence, review findings, consider response paths, and prepare professional correspondence. You review every detail before approval."
-              />
-              <ProcessStep
-                number="03"
-                title="Send & Prove"
-                text="Approve the exact draft, complete payment for mailing, and send through MailMyPDF. Track delivery and keep proof of the documented correspondence event."
-              />
-            </div>
-          </div>
-        </section>
-
-        {/* ═══ STATS ═══ */}
-        <section className="border-b border-rule/60">
-          <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6">
-            <div className="grid gap-4 md:grid-cols-3">
-              <DirectoryStat value={`${NOTICE_WORKFLOWS.length}`} label="specialized workflows" detail="Organized by notice type and user intent." />
-              <DirectoryStat value="1" label="master workspace" detail="Documents, deadlines, drafting, and response history." />
-              <DirectoryStat value="US" label="initial focus" detail="Built first around U.S. notices and correspondence." />
-            </div>
-          </div>
-        </section>
-
-        {/* ═══ FEATURED WORKFLOW CAROUSEL ═══ */}
-        <section id="workflows">
-          <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-20">
-            <FeaturedWorkflowCarousel workflows={featured} />
-          </div>
-        </section>
-
-        {/* ═══ TRUST ARCHITECTURE ═══ */}
-        <section className="relative overflow-hidden border-y border-rule/60 bg-ink text-paper">
-          <div className="absolute inset-0 opacity-10">
-            <img
-              src={WORKSPACE_IMAGE}
-              alt=""
-              className="h-full w-full object-cover"
-              loading="lazy"
-              aria-hidden="true"
-            />
-          </div>
-          <div className="relative mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
-            <div className="max-w-2xl">
-              <div className="inline-flex items-center gap-0.4rem border border-stamp/40 px-2.5 py-1 font-mono text-[0.68rem] uppercase tracking-[0.15em] text-stamp rounded-full">
-                Trust architecture
+            <div className="flex items-end justify-between gap-6">
+              <div>
+                <div className="eyebrow">Tenant matters</div>
+                <h2 className="mt-3 font-serif text-3xl sm:text-4xl">Core workflow families</h2>
               </div>
-              <h2 className="mt-5 font-serif text-3xl text-paper sm:text-4xl">
-                You stay in control of every step.
-              </h2>
-              <p className="mt-4 text-base leading-7 text-paper/70">
-                The notice is the source material. Your facts remain under your control. AI assists — it does not decide. You review the response before approval. Approval applies to the exact draft. Payment is distinct from authorization. Mailing creates a documented record.
-              </p>
+              <div className="hidden font-mono text-xs uppercase tracking-[0.16em] text-muted-foreground sm:block">
+                Domain: Tenant / Housing
+              </div>
             </div>
-            <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              <TrustItem text="The notice is the source material." />
-              <TrustItem text="Your facts remain under your control." />
-              <TrustItem text="AI assists; it does not decide." />
-              <TrustItem text="You review the response before approval." />
-              <TrustItem text="Approval applies to the exact draft." />
-              <TrustItem text="Payment is distinct from authorization." />
-              <TrustItem text="Mailing creates a documented record." />
-              <TrustItem text="Proof remains available after mailing." />
-              <TrustItem text="Evidence supports the response." />
+            <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              {WORKFLOWS.map((workflow) => (
+                <article key={workflow.title} className="rounded-xl border border-rule bg-card p-6">
+                  <h3 className="font-serif text-xl leading-snug">{workflow.title}</h3>
+                  <p className="mt-3 text-sm leading-6 text-muted-foreground">{workflow.detail}</p>
+                  <div className="mt-5 border-t border-rule/50 pt-4 font-mono text-[10px] uppercase tracking-[0.14em] text-stamp">
+                    Workflow family
+                  </div>
+                </article>
+              ))}
             </div>
           </div>
         </section>
 
-        {/* ═══ PRINCIPLES ═══ */}
-        <section className="border-b border-rule/60 bg-paper-deep/20">
-          <div className="mx-auto grid max-w-6xl gap-6 px-4 py-12 sm:px-6 sm:py-16 md:grid-cols-3">
-            <DirectoryPrinciple title="Understand" text="Start with the actual notice and extract the facts, dates, reference numbers, and requested action." />
-            <DirectoryPrinciple title="Prepare" text="Organize the supporting documents and build a response you can review before sending." />
-            <DirectoryPrinciple title="Prove" text="When the document is ready, keep the mailing, tracking, and proof record with the workflow." />
+        <section className="border-b border-rule/60">
+          <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-20">
+            <div className="grid gap-6 md:grid-cols-3">
+              <Principle title="Document" text="Start with the actual notice, lease, communication, or record and preserve the source material." />
+              <Principle title="Organize" text="Separate user-provided facts from extracted information, identify deadlines, and surface missing evidence." />
+              <Principle title="Respond" text="Prepare a clear written response that the user reviews before any consequential submission or mailing." />
+            </div>
           </div>
         </section>
 
-        {/* ═══ CTA ═══ */}
-        <section className="border-t border-rule/60">
-          <div className="mx-auto max-w-4xl px-4 py-12 text-center sm:px-6 sm:py-20">
-            <div className="postmark mx-auto w-fit">Not sure which workflow</div>
-            <h2 className="mt-4 font-serif text-3xl sm:text-4xl">Upload the notice and start with analysis.</h2>
-            <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-muted-foreground sm:text-base">
-              Notice Respond can help you identify the notice type and organize the next response step from the document itself.
+        <section className="border-t border-rule/60 bg-ink text-paper">
+          <div className="mx-auto max-w-4xl px-4 py-16 text-center sm:px-6 sm:py-20">
+            <div className="postmark mx-auto w-fit">MailMyPDF ecosystem</div>
+            <h2 className="mt-5 font-serif text-3xl sm:text-4xl">Built as a distinct vertical, sharing the same trusted platform.</h2>
+            <p className="mx-auto mt-4 max-w-2xl text-sm leading-6 text-paper/70 sm:text-base">
+              Tenant Reply owns the tenant and housing domain. Shared identity, mailing, proof, security, and workflow infrastructure comes from the MailMyPDF ecosystem.
             </p>
-            <Link
-              to="/workflows/analyze"
-              className="mt-6 inline-flex items-center gap-2 rounded-full bg-ink px-6 py-3 text-sm font-medium text-paper shadow-card transition-transform hover:-translate-y-0.5"
-            >
-              Analyze my notice
-              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-              </svg>
-            </Link>
           </div>
         </section>
       </main>
@@ -214,42 +101,11 @@ function DirectoryPage() {
   );
 }
 
-function ProcessStep({ number, title, text }: { number: string; title: string; text: string }) {
-  return (
-    <div className="rounded-xl border border-rule bg-card p-6">
-      <div className="font-mono text-2xl text-stamp">{number}</div>
-      <h3 className="mt-3 font-serif text-2xl">{title}</h3>
-      <p className="mt-2 text-sm leading-6 text-muted-foreground">{text}</p>
-    </div>
-  );
-}
-
-function DirectoryStat({ value, label, detail }: { value: string; label: string; detail: string }) {
-  return (
-    <div className="rounded-xl border border-rule bg-card p-5">
-      <div className="font-serif text-3xl text-stamp">{value}</div>
-      <div className="mt-1 text-sm font-semibold">{label}</div>
-      <p className="mt-1 text-xs leading-5 text-muted-foreground">{detail}</p>
-    </div>
-  );
-}
-
-function DirectoryPrinciple({ title, text }: { title: string; text: string }) {
+function Principle({ title, text }: { title: string; text: string }) {
   return (
     <div className="rounded-xl border border-rule bg-card p-6">
       <div className="font-mono text-xs text-stamp">{title}</div>
       <p className="mt-2 text-sm leading-6 text-muted-foreground">{text}</p>
-    </div>
-  );
-}
-
-function TrustItem({ text }: { text: string }) {
-  return (
-    <div className="flex items-start gap-2.5">
-      <svg className="mt-0.5 h-4 w-4 shrink-0 text-stamp" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-      </svg>
-      <span className="text-sm leading-6 text-paper/80">{text}</span>
     </div>
   );
 }
