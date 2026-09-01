@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 .agents/.env
 node_modules/
 .npm/
@@ -10,10 +9,9 @@ __pycache__/
 **/.open-next/
 **/.wrangler/
 **/node_modules/
-**/conversations/6a8e5567c42cd4f53b2f30ad/mailmypdf-bundle/*/node_modules/
-**/conversations/6a8e5567c42cd4f53b2f30ad/mailmypdf-bundle/*/.next/
-=======
-node_modules/
+**/conversations/*/mailmypdf-bundle/*/node_modules/
+**/conversations/*/mailmypdf-bundle/*/.next/
+
 dist/
 .output/
 .wrangler/
@@ -21,4 +19,3 @@ dist/
 .env
 .env.*
 !.env.example
->>>>>>> github/main
